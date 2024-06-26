@@ -27,6 +27,7 @@ pipeline:
                     command: |-
                       python -m venv venv
                       . venv/bin/activate
+                      pip install pyjokes
                       pip install -r requirements.txt
                   timeout: ""
                   type: Run
