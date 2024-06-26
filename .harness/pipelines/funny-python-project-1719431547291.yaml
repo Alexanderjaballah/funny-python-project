@@ -36,7 +36,9 @@ pipeline:
                   name: Run Python Script
                   spec:
                     shell: Sh
-                    command: python main.py
+                    command: |-
+                      pip install pyjokes
+                      python main.py
                   timeout: ""
                   type: Run
           platform:
