@@ -21,28 +21,27 @@ pipeline:
             steps:
               - step:
                   identifier: runlinter
-                  name: run linter
+                  name: Set Up Enviroment
                   spec:
+                    shell: Sh
                     command: |-
-                      pip install flake8
-                      flake8 .
+                      python -m venv venv
+                      source venv/bin/activate
+                      pip install -r requirements.txt
                   timeout: ""
                   type: Run
               - step:
                   identifier: setupvirtualenvironment
-                  name: setup virtual environment
+                  name: Run Python Script
                   spec:
-                    command: |-
-                      python3 -m venv .venv
-                      . .venv/bin/activate
-                      python3 -m pip install -r requirements.txt
-                      python3 -m pip install -e .
+                    shell: Sh
+                    command: python main.py
                   timeout: ""
                   type: Run
           platform:
-            arch: Amd64
             os: Linux
+            arch: Amd64
           runtime:
-            spec: {}
             type: Cloud
+            spec: {}
         type: CI
