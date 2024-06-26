@@ -1,0 +1,48 @@
+pipeline:
+  identifier: Build_funny_python_project_1719431549438
+  name: Build funny-python-project
+  orgIdentifier: default
+  projectIdentifier: funnypython
+  properties:
+    ci:
+      codebase:
+        build: <+input>
+        connectorRef: account.github_harness
+        repoName: funny-python-project
+  stages:
+    - stage:
+        identifier: build
+        name: build
+        spec:
+          caching:
+            enabled: true
+          cloneCodebase: true
+          execution:
+            steps:
+              - step:
+                  identifier: runlinter
+                  name: Set Up Enviroment
+                  spec:
+                    shell: Sh
+                    command: |-
+                      python -m venv venv
+                      . venv/bin/activate
+                      pip install pyjokes
+                      pip install -r requirements.txt
+                  timeout: ""
+                  type: Run
+              - step:
+                  identifier: setupvirtualenvironment
+                  name: Run Python Script
+                  spec:
+                    shell: Sh
+                    command: python main.py
+                  timeout: ""
+                  type: Run
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+        type: CI

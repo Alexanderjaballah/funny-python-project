@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_funny_python_project_1719431549438-pr-trigger-input-set
+  identifier: Build_funny_python_project_1719431549438prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: funnypython
+  pipeline:
+    identifier: Build_funny_python_project_1719431549438
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
