@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: funny-python-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: funny-python-app
+  template:
+    metadata:
+      labels:
+        app: funny-python-app
+    spec:
+      containers:
+      - name: funny-python-app
+        image: alexjaballah/funny-python-project:latest
+        ports:
+        - containerPort: 80
